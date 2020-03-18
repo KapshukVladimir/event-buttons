@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		.green{
+			background-color: green;
+		}
+		#main-list{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			padding: 1%;
+			border: 10px double #156742;
+		}
+		li{
+			list-style: none;
+			padding: 20px;
+		}
+		button{
+			border: 1px solid black;
+			font-size: 24px;
+			outline: none;
+			background-color: coral;
+			padding: 10px 20px;
+			color: #fff222;
+			opacity: 0.7;
+			transition: 0.6s;
+		}
+		button:hover{
+			background-color: black;
+			opacity: 1;
+		}
+	</style>
+
+	<ul id="main-list">
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+		<li>Fouth</li>
+		<li>Last</li>
+	</ul>
+	<button id="show-first">Show first element</button>
+	<button id="show-last">Show last element</button>
+	<button id="show-next">Show next element</button>
+	<button id="show-previous">Show previous element</button>
+	<button id="add">Add element</button>
+	<button id="remove">Remove elevent</button>
+	<button id="add-begin">Add to begin</button>
+
+	<script src="script.js"></script>
+</body>
+</html>
