@@ -1,83 +1,123 @@
 let elements = document.querySelectorAll('#main-list li');
-let i = 0;
-let k = i;
-let current;
-let last;
+let i;
 
-let showFirstEl = document.getElementById("show-first").onclick = function(){
-	for (let item = 0; item < elements.length; item++){
-		if (elements[item].classList.contains('green')){
-			elements[item].classList.remove('green');
+let 
+current,
+first,
+last;
+
+
+
+let showFirstEl = document.getElementById("show-first").onclick = function () {
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
 		}
 	}
-
-	i = 1;
-	elements[0].classList.add('green');
-	current = elements[i];
-	last.classList.remove('green');
+	first = document.getElementById('main-list').firstElementChild;
+	first.classList.add('green');
+	i = 0;
+	current = i;
 	
 }
 
-let showLastEl = document.getElementById("show-last").onclick = function(){
-	
-	for (let item = 0; item < elements.length; item++){
-		if (elements[item].classList.contains('green')){
-			elements[item].classList.remove('green');
-			
+let showLastEl = document.getElementById("show-last").onclick = function () {
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
 		}
 	}
-	last = document.querySelector("#main-list li:last-child");
-	i = last;
-	
+	last = document.getElementById('main-list').lastElementChild;
 	last.classList.add('green');
-	elements[0].classList.remove('green');
-	//current = last;
+	current = last;
+}
+
+let showNextEl = document.getElementById("show-next").onclick = function () {
+	i = current;
+	i++;
+	elements = document.querySelectorAll('#main-list li');
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
+		}
+	}
+
+	elements[0].classList.add('green');
+	if (elements[0] != elements[i]){
+		elements[0].classList.remove('green');
+	}
+	
+	if ( elements[i] == undefined && elements[i] == null){
+		i = 0;
+	}
+	
+	elements[i].classList.add('green');
+	current = i;
+	
+	//elements[i].nextElementSibling;
 	
 }
 
-let showNextEl = document.getElementById("show-next").onclick = function(){
-	
-	last = document.querySelector("#main-list li:last-child");
-	if (elements[i] == undefined || last == undefined){
+let showPreviousEl = document.getElementById("show-previous").onclick = function(){
+	i = current;
+	i--;
+	if (elements[i] === undefined){
+		i = elements.length - 1;
+	}
+	current = i;
 
-		i = 0;
-		last.classList.remove('green');
+
+	elements = document.querySelectorAll('#main-list li');
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
+		}
 	}
 	elements[i].classList.add('green');
 	
-	k = i - 1;
-	i++;
-	
-	elements[k].classList.remove('green');
-	
-}
 
-// let showPreviousEl = document.getElementById("show-previous").onclick = function(current){
-// 	console.log(elements[i]);
-// 	last = elements[elements.length -1];
-// 	i--;
-// 	if (elements[i] == undefined){
-// 		elements[i] = last;
-// 	}
-// }
-let addElement = document.getElementById("add").onclick = function(){
+}
+let addElement = document.getElementById("add").onclick = function () {
 	let li = document.createElement("li");
-	li.style.background = "pink";
+	//li.style.background = "pink";
+	i = current;
 	let textForLi = document.createTextNode("New li");
 	li.appendChild(textForLi);
-	document.getElementById("main-list").appendChild(li);	
+	current = i;
+	document.getElementById("main-list").appendChild(li);
+	
+	elements = document.querySelectorAll('#main-list li');
+
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
+		}
+	}
+	
+	elements[elements.length - 1].classList.add('green');
 }
 
-let remove = document.getElementById("remove").onclick = function(){
+let remove = document.getElementById("remove").onclick = function () {
 	let list = document.getElementById("main-list");
 	let last1 = document.querySelector("#main-list li:last-child");
 	last1.remove();
 }
-let addToBegin = document.getElementById("add-begin").onclick = function(){
+let addToBegin = document.getElementById("add-begin").onclick = function () {
 	let li = document.createElement("li");
-	li.style.background = "violet";
+	//li.style.background = "violet";
 	let firstEl = document.querySelector("#main-list li:first-child");
 	let textForLi = document.createTextNode("New first li");
 	li.appendChild(textForLi);
 	document.getElementById("main-list").insertBefore(li, firstEl);
+
+	elements = document.querySelectorAll('#main-list li');
+
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].classList.contains('green')) {
+			elements[i].classList.remove('green');
+		}
+	}
+	
+	elements[0].classList.add('green');
+	
 }
